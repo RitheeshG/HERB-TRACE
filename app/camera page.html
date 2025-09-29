@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camera - Virtual Herbal Garden</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("https://images.pexels.com/photos/6913718/pexels-photo-6913718.jpeg") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+        }
+        
+        header {
+            background: rgba(46, 125, 50, 0.95);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #c8e6c9;
+        }
+        
+        .camera-container {
+            backdrop-filter: blur(6px);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            display: inline-block;
+            padding: 25px;
+            margin-top: 40px;
+        }
+        
+        video {
+            width: 90%;
+            max-width: 600px;
+            border: 3px solid #e0f2f1;
+            border-radius: 10px;
+        }
+        
+        button {
+            margin-top: 15px;
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #1b5e20;
+        }
+        
+        canvas {
+            display: none;
+        }
+        
+        #photo {
+            margin-top: 20px;
+            max-width: 80%;
+            border: 2px solid #e0f2f1;
+            border-radius: 10px;
+        }
+        
+        footer {
+            background: rgba(46, 125, 50, 0.95);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header>
+        <h1>🌿 HERBBIOO</h1>
+        <nav>
+            <a href="main page.html">Home</a>
+            <a href="receipe page.html">Herbal Remedies</a>
+            <a href="about page.html">About</a>
+            <a href="main page.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="camera-container">
+        <h2>📷 Herbal Plant Scanner</h2>
+        <video id="camera" autoplay playsinline></video><br />
+        <button onclick="capturePhoto()">Capture Photo</button>
+        <canvas id="snapshot"></canvas><br />
+        <img id="photo" alt="Captured image will appear here" /><br />
+
+        <form id="photoForm" method="POST" action="submit_photo.php">
+            <input type="hidden" name="capturedImage" id="capturedImage" />
+            <button type="submit" onclick="prepareSubmit()">Submit Photo</button>
+        </form>
+    </div>
+
+
+
+    <script>
+        const video = document.getElementById('camera');
+        const canvas = document.getElementById('snapshot');
+        const photo = document.getElementById('photo');
+        const capturedImageInput = document.getElementById('capturedImage');
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: true
+                });
+                video.srcObject = stream;
+            } catch (err) {
+                alert("Camera access denied or unavailable: " + err);
+            }
+        }
+
+        function capturePhoto() {
+            const ctx = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            photo.src = canvas.toDataURL('image/png');
+        }
+
+        function prepareSubmit() {
+            capturedImageInput.value = photo.src;
+        }
+
+        window.onload = startCamera;
+    </script>
+
+</body>
+<footer>
+    <p>© 2025 Virtual Herbal Garden | Explore Nature with Technology 🌱</p>
+    <a href="https://www.youtube.com/yourchannel" target="_blank" style="margin:0 10px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" width="35" height="35">
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/yourusername" target="_blank" style="margin:0 10px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" width="35" height="35">
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/yourprofile" target="_blank" style="margin:0 10px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384072.png" alt="LinkedIn" width="35" height="35">
+    </a>
+</footer>
+
+</html>

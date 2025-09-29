@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Virtual Herbal Garden</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: url('https://images.pexels.com/photos/6913718/pexels-photo-6913718.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .signup-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            color: #fff;
+            backdrop-filter: blur(5px);
+        }
+        
+        .signup-container h2 {
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #c8e6c9;
+        }
+        
+        .signup-container input[type="text"],
+        .signup-container input[type="email"],
+        .signup-container input[type="password"] {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .signup-container input[type="submit"] {
+            width: 95%;
+            padding: 12px;
+            margin-top: 15px;
+            background-color: #2e7d32;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .signup-container input[type="submit"]:hover {
+            background-color: #1b5e20;
+        }
+        
+        .signup-container a {
+            display: block;
+            margin-top: 15px;
+            color: #a5d6a7;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .signup-container a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 450px) {
+            .signup-container {
+                padding: 30px 20px;
+            }
+            .signup-container h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-container">
+        <h2>🌿 Create Your Account</h2>
+        <form action="login page.html" method="POST">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+            <input type="submit" value="Sign Up">
+        </form>
+        <a href="login page.html">Already have an account? Login</a>
+    </div>
+
+</body>
+
+</html>

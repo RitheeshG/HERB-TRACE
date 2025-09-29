@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Plant Research - Virtual Herbal Garden</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("https://images.pexels.com/photos/1151418/pexels-photo-1151418.jpeg") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+        /* Header/Navbar */
+        
+        header {
+            background: rgba(46, 125, 50, 0.95);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #c8e6c9;
+        }
+        /* Search Bar */
+        
+        .search-bar {
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-bar input {
+            padding: 12px;
+            width: 80%;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            font-size: 16px;
+        }
+        
+        .search-bar button {
+            padding: 12px 20px;
+            border: none;
+            background: #2e7d32;
+            color: white;
+            font-weight: bold;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+        }
+        
+        .search-bar button:hover {
+            background: #1b5e20;
+        }
+        /* 3D Viewer */
+        
+        .viewer-container {
+            margin: 30px auto;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        model-viewer {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            background: #eee;
+        }
+        /* Footer */
+        
+        footer {
+            background: rgba(46, 125, 50, 0.95);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🌿 Virtual Herbal Garden</h1>
+        <nav>
+            <a href="main page.html">Home</a>
+            <a href="receipe page.html">Herbal Remedies</a>
+            <a href="camera page.html">Camera</a>
+            <a href="about page.html">About</a>
+            <a href="main page.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for a plant (e.g. Tulsi, Neem, Aloe Vera)">
+        <button onclick="searchPlant()">Search</button>
+    </div>
+
+    <!-- 3D Viewer -->
+    <div class="viewer-container">
+        <h2 id="plantTitle">🌱 Explore Plant in 3D</h2>
+        <model-viewer id="plantModel" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" alt="3D model of plant" auto-rotate camera-controls ar>
+        </model-viewer>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Virtual Herbal Garden | Explore Nature with Technology 🌱</p>
+    </footer>
+
+    <!-- JS -->
+    <script>
+        const models = {
+            "tulsi": "plants/tulsi.glb",
+            "neem": "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
+            "aloevera": "https://modelviewer.dev/shared-assets/models/RobotExpressive.glb"
+                // You can replace with real 3D plant models (GLB/GLTF files)
+        };
+
+        function searchPlant() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const modelViewer = document.getElementById("plantModel");
+            const title = document.getElementById("plantTitle");
+
+            if (models[query]) {
+                modelViewer.src = models[query];
+                title.innerText = "🌿 " + query.charAt(0).toUpperCase() + query.slice(1);
+            } else {
+                alert("Plant not found. Try Tulsi, Neem, or Aloe Vera.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
